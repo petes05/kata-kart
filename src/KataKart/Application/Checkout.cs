@@ -8,6 +8,7 @@ namespace KataKart.Application;
 public class Checkout : ICheckout
 {
     private readonly Dictionary<string, Product> _products;
+    private readonly Dictionary<string, int> _scannedItems = [];
 
     /// <summary>
     /// Initialises new instance of Checkout.
@@ -23,7 +24,13 @@ public class Checkout : ICheckout
     /// <inheritdoc/>
     public bool Scan(string itemSKU)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(itemSKU)) return false;
+        if (!_products.ContainsKey(itemSKU)) return false;
+
+        var itemExists = _scannedItems.TryGetValue(itemSKU, out int count);
+        _scannedItems[itemSKU] = itemExists ? count + 1 : 1;
+
+        return true;
     }
 
     /// <inheritdoc/>
