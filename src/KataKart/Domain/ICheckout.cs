@@ -16,5 +16,5 @@ public interface ICheckout
     /// Get the total price of all items scanned.
     /// </summary>
     /// <returns></returns>
-    double GetTotalPrice();
+    int GetTotalPrice();
 }

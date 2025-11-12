@@ -11,9 +11,9 @@ public class Product
     public required string SKU { get; init; }
 
     /// <summary>
-    /// Gets the price of one unit of this product.
+    /// Gets the price of one unit of this product (in the smallest unit of currency e.g. pence).
     /// </summary>
-    public required double UnitPrice { get; init; }
+    public required int UnitPrice { get; init; }
 
     /// <summary>
     /// Gets the multibuy discount if it exists.

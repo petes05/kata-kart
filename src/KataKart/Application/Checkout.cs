@@ -43,9 +43,9 @@ public class Checkout : ICheckout
     }
 
     /// <inheritdoc/>
-    public double GetTotalPrice()
+    public int GetTotalPrice()
     {
-        double totalPrice = 0;
+        var totalPrice = 0;
 
         foreach (var scannedProductCount in _scannedProductCounts)
         {
@@ -55,7 +55,7 @@ public class Checkout : ICheckout
         return totalPrice;
     }
     
-    private double GetTotalPriceForProduct(string productSKU, int count)
+    private int GetTotalPriceForProduct(string productSKU, int count)
     {
         if (!_products.TryGetValue(productSKU, out var product))
         {
