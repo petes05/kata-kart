@@ -16,7 +16,8 @@ public class CheckoutTests
             { "B", new Product{ SKU = "B", UnitPrice = 30, Multibuy = new Multibuy(2, 45) } },
             { "C", new Product{ SKU = "C", UnitPrice = 20 } },
             { "D", new Product{ SKU = "D", UnitPrice = 15 } },
-            { "E", new Product{ SKU = "E", UnitPrice = 25, Multibuy = new Multibuy(0, 10) } }
+            { "E", new Product{ SKU = "E", UnitPrice = 25, Multibuy = new Multibuy(0, 10) } },
+            { "F", new Product{ SKU = "F", UnitPrice = 5, Multibuy = new Multibuy(3, 20) } }
         };
 
         _checkout = new Checkout(products);
@@ -173,5 +174,20 @@ public class CheckoutTests
 
         // Assert
         Assert.Equal(75, result);
+    }
+
+    [Fact]
+    public void GetTotalPrice_MultibuyOverPriced_ReturnsLowestPrice()
+    {
+        // Arrange
+        _checkout.Scan("F");
+        _checkout.Scan("F");
+        _checkout.Scan("F");
+
+        // Act
+        var result = _checkout.GetTotalPrice();
+
+        // Assert
+        Assert.Equal(15, result);
     }
 }

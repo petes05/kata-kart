@@ -54,7 +54,7 @@ public class Checkout : ICheckout
 
         return totalPrice;
     }
-    
+
     private int GetTotalPriceForProduct(string productSKU, int count)
     {
         if (!_products.TryGetValue(productSKU, out var product))
